@@ -11,6 +11,7 @@ public class Directory{
 		a.addAdult("Tagore", 313);
 		a.addAdult("karthik", 123);
 		a.addAdult("Srikanth", 456);
+		a.addAdult("Dharma", 111);
 		a.addAdult("Afroz", 789);
 		a.addAdult("Nagendra", 456);
 		a.addAdult("Venkat", 777);
@@ -24,16 +25,24 @@ public class Directory{
 		//Read member
 		a.getMap(313);
 		
+		//Search member
+		a.search("Ajay", 007);
+		
 		//Delete member
-		a.delete("Kathik", 123);
+		a.delete("Tagore", 313);
 		
-		System.out.println("Now size of directory: " + a.member.size());
+		System.out.println(a.member.size());
 		
 		
+		
+		
+		
+	}
+	
+}
 		
 		
 	
 		
 		
-	}
-}
+	
