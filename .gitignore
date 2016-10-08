@@ -2,3 +2,6 @@
 *.class
 build
 target
+.idea
+.project
+.classpath
