@@ -1,12 +1,31 @@
 package com.sidgs.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import java.util.List;
+
+@Entity (name = "member")
 public class Member {
 
+    @Column (name = "first_name")
 	private String firstName;
+
+    @Column (name = "last_name")
 	private String lastName;
+
 	private String email;
 	private int phone;
 	private String address;
+
+    //mapping many-many
+    List<Education> certifications ;
+
+    // 0-many
+    List<Preference> preferences ;
+
+    //1 -many
+    List<Address> addresses ;
+
 
 	public String getFirstName() {
 		return firstName;
