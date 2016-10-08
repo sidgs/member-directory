@@ -1,4 +1,4 @@
-package com.sidgs.dao;
+package com.sidgs.dao.jdbc;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -9,10 +9,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.sidgs.dao.MemberDao;
 import com.sidgs.model.Member;
 import com.sidgs.util.DBUtil;
 
-public class MemberDaoImplementation implements MemberDao  {
+public class MemberDaoImplementation implements MemberDao {
 
 
 	private Connection conn;

@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.sidgs.dao.DAOFactory;
 import com.sidgs.dao.MemberDao;
-import com.sidgs.dao.MemberDaoImplementation;
 import com.sidgs.model.Member;
 
 /**
@@ -29,7 +29,7 @@ public class MemberController extends HttpServlet {
     public static final String INSERT_OR_EDIT = "/member.jsp";
  
     public MemberController() throws IOException, ClassNotFoundException {
-        dao = new MemberDaoImplementation();
+        dao = DAOFactory.getInstance().getMemberDao();
     }
  
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
