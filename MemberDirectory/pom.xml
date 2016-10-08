@@ -7,6 +7,33 @@
     <packaging>war</packaging>
     <modelVersion>4.0.0</modelVersion>
 
+    <properties>
+        <db.username>root</db.username>
+        <db.password>password</db.password>
+        <db.url>jdbc:mysql://localhost:3306/memberdir</db.url>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <additionalClasspathDirs>
+                        <additionalClasspathDir>${project.build.testOutputDirectory}</additionalClasspathDir>
+                    </additionalClasspathDirs>
+                    <!--<useTestClasspath>true</useTestClasspath>-->
+                    <systemProperties>
+                        <username>${db.username}</username>
+                        <password>${db.password}</password>
+                        <url>${db.url}</url>
+                    </systemProperties>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
     <dependencies>
 
         <dependency>
@@ -35,7 +62,8 @@
             <scope>provided</scope>
         </dependency>
 
-
     </dependencies>
+
+
 
 </project>

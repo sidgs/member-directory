@@ -14,17 +14,36 @@ public class DBUtil {
 	public static Connection getConnection() {
 		if( conn != null )
 			return conn;
-		
+
+		String driver = "";
+		String url = "";
+		String user = "";
+		String password = "";
+
 		InputStream inputStream = DBUtil.class.getClassLoader().getResourceAsStream( "/db.properties" );
 		Properties properties = new Properties();
+
+		if ( inputStream == null ) {
+			driver = System.getProperty("driver", "com.mysql.jdbc.Driver");
+			url = System.getProperty("url");
+			user = System.getProperty("user");
+			password = System.getProperty("password");
+
+		} else {
+			try {
+				properties.load(inputStream);
+				driver = properties.getProperty("driver");
+				url = properties.getProperty("url");
+				user = properties.getProperty("user");
+				password = properties.getProperty("password");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 		try {
-			properties.load( inputStream );
-			String driver = properties.getProperty( "driver" );
-			String url = properties.getProperty( "url" );
-			String user = properties.getProperty( "user" );
-			String password = properties.getProperty( "password" );
-			Class.forName( driver );
-			conn = DriverManager.getConnection( url, user, password );
+			properties.load(inputStream);
+			Class.forName(driver);
+			conn = DriverManager.getConnection(url, user, password);
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
@@ -32,7 +51,8 @@ public class DBUtil {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
+
 		return conn;
 	}
 	
