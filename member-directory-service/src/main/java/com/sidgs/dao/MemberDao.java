@@ -9,7 +9,7 @@ public interface MemberDao {
 	    public void deleteMember(int phone);
 	    public void updateMember(Member member);
 	    public List<Member> getAllMembers();
-	    public Member getMemberByLastName(String LastName );
+	    public List<Member> getMemberByLastName(String LastName );
 	}
 
 	
