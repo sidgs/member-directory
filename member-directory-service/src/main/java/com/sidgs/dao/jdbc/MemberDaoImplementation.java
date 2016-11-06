@@ -20,19 +20,11 @@ import org.springframework.stereotype.Service;
 @Service ("MemberDao")
 public class MemberDaoImplementation implements MemberDao {
 
-
-	private Connection conn;
-
 	@Autowired
 	@Qualifier("jdbcTemplate")
 	JdbcTemplate jdbcTemplate ;
 
-	public MemberDaoImplementation() {}
-
-
 	public void addMember(Member member) {
-		// TODO Auto-generated method stub
-
 			String query = "insert into member (firstName, lastName, email, phone, address) " +
 					"values (?,?,?,?,?)";
 			int i = jdbcTemplate.update(query,
@@ -40,9 +32,9 @@ public class MemberDaoImplementation implements MemberDao {
 					member.getPhone(), member.getAddress() );
 	}
 
-	public void deleteMember(int phone) {
-			String query = "delete from member where phone=?";
-			int i = jdbcTemplate.update(query, phone);
+	public void deleteMember(long id) {
+			String query = "delete from member where member_id=?";
+			int i = jdbcTemplate.update(query, id);
 	}
 
 	public void updateMember(Member member) {
@@ -61,17 +53,16 @@ public class MemberDaoImplementation implements MemberDao {
 				new RowMapper<Member>() {
 					public Member mapRow(ResultSet resultSet, int i) throws SQLException {
 						Member member = new Member();
+						member.setId(resultSet.getLong("member_id"));
 						member.setFirstName( resultSet.getString( "firstName" ) );
 						member.setLastName( resultSet.getString( "lastName" ) );
 						member.setEmail( resultSet.getString( "email" ) );
 						member.setPhone( resultSet.getInt( "phone" ) );
 						member.setAddress( resultSet.getString( "address" ) );
-						return null;
+						return member;
 					}
 				}
-
 		) ;
-
 		return members;
 	}
 
@@ -82,18 +73,42 @@ public class MemberDaoImplementation implements MemberDao {
 				new RowMapper<Member>() {
 					public Member mapRow(ResultSet resultSet, int i) throws SQLException {
 						Member member = new Member();
+						member.setId( resultSet.getLong( "member_id" ) );
 						member.setFirstName(resultSet.getString("firstName"));
 						member.setLastName(resultSet.getString("lastName"));
 						member.setEmail(resultSet.getString("email"));
 						member.setPhone(resultSet.getInt("phone"));
 						member.setAddress(resultSet.getString("address"));
-						return null;
+						return member;
 					}
 				}
 
 		);
 
 		return members;
+	}
+
+	public Member getMember(long id) {
+		List<Member> members = jdbcTemplate.query(
+				"Select * from member where member_id=" + id+ "",
+				new RowMapper<Member>() {
+					public Member mapRow(ResultSet resultSet, int i) throws SQLException {
+						Member member = new Member();
+						member.setId( resultSet.getLong( "member_id" ) );
+						member.setFirstName(resultSet.getString("firstName"));
+						member.setLastName(resultSet.getString("lastName"));
+						member.setEmail(resultSet.getString("email"));
+						member.setPhone(resultSet.getInt("phone"));
+						member.setAddress(resultSet.getString("address"));
+						return member;
+					}
+				}
+
+		);
+		if ( members != null && members.size() > 0 ) {
+			return members.get(0);
+		}
+		else return null;
 	}
 }
 

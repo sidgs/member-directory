@@ -7,17 +7,28 @@ import java.util.List;
 @Entity (name = "member")
 public class Member {
 
-    @Column (name = "first_name")
+	@Column(name= "member_id")
+	long id;
+
+    @Column (name = "member_first_name")
 	private String firstName;
 
-    @Column (name = "last_name")
+    @Column (name = "member_last_name")
 	private String lastName;
 
 	private String email;
 	private int phone;
 	private String address;
 
-    //mapping many-many
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	//mapping many-many
     List<Education> certifications ;
 
     // 0-many
