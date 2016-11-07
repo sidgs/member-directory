@@ -45,8 +45,8 @@ public class MemberWebService implements MemberDao {
         return dao.getMemberByLastName(LastName);
     }
 
-    @RequestMapping (method = RequestMethod.GET, value = "/{last-name}")
-    public Member getMember(long id) {
+    @RequestMapping (method = RequestMethod.GET, value = "/{id}")
+    public Member getMember(@PathVariable("id")long id) {
         return dao.getMember(id);
     }
 }
