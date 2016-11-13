@@ -1,41 +1,35 @@
 package com.sidgs.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import java.util.List;
 
-@Entity (name = "member")
 public class Member {
 
-	@Column(name= "member_id")
-	long id;
-
-    @Column (name = "member_first_name")
+	private long member_id;
 	private String firstName;
-
-    @Column (name = "member_last_name")
 	private String lastName;
-
 	private String email;
 	private int phone;
 	private String address;
 
-	public long getId() {
-		return id;
+	
+
+//	//mapping many-many
+//    List<Education> certifications ;
+//
+//    // 0-many
+//    List<Preference> preferences ;
+//
+//    //1 -many
+//    List<Address> addresses ;
+
+
+	public long getMember_id() {
+		return member_id;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+
+	public void setMember_id(long member_id) {
+		this.member_id = member_id;
 	}
-
-	//mapping many-many
-    List<Education> certifications ;
-
-    // 0-many
-    List<Preference> preferences ;
-
-    //1 -many
-    List<Address> addresses ;
 
 
 	public String getFirstName() {

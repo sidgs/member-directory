@@ -1,16 +1,16 @@
 package com.sidgs.member.ws.controller;
 
-import com.sidgs.dao.MemberDao;
-import com.sidgs.model.Member;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import com.sidgs.dao.MemberDao;
+import com.sidgs.model.Member;
 
 @RestController
 @RequestMapping("/member")

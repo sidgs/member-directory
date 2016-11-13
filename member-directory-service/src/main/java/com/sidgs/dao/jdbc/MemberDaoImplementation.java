@@ -15,9 +15,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
-@Service ("MemberDao")
+@Repository ("MemberDao")
 public class MemberDaoImplementation implements MemberDao {
 
 	@Autowired
@@ -25,9 +26,9 @@ public class MemberDaoImplementation implements MemberDao {
 	JdbcTemplate jdbcTemplate ;
 
 	public void addMember(Member member) {
-			String query = "insert into member (firstName, lastName, email, phone, address) " +
-					"values (?,?,?,?,?)";
-			int i = jdbcTemplate.update(query,
+			String query = "insert into member ( member_id,firstName, lastName, email, phone, address) " +
+					"values (?,?,?,?,?,?)";
+			 jdbcTemplate.update(query,member.getMember_id(),
 					member.getFirstName(),member.getLastName(),member.getEmail(),
 					member.getPhone(), member.getAddress() );
 	}
@@ -53,7 +54,7 @@ public class MemberDaoImplementation implements MemberDao {
 				new RowMapper<Member>() {
 					public Member mapRow(ResultSet resultSet, int i) throws SQLException {
 						Member member = new Member();
-						member.setId(resultSet.getLong("member_id"));
+						member.setMember_id(resultSet.getLong("member_id"));;
 						member.setFirstName( resultSet.getString( "firstName" ) );
 						member.setLastName( resultSet.getString( "lastName" ) );
 						member.setEmail( resultSet.getString( "email" ) );
@@ -73,7 +74,7 @@ public class MemberDaoImplementation implements MemberDao {
 				new RowMapper<Member>() {
 					public Member mapRow(ResultSet resultSet, int i) throws SQLException {
 						Member member = new Member();
-						member.setId( resultSet.getLong( "member_id" ) );
+						member.setMember_id(resultSet.getLong( "member_id" ) );
 						member.setFirstName(resultSet.getString("firstName"));
 						member.setLastName(resultSet.getString("lastName"));
 						member.setEmail(resultSet.getString("email"));
@@ -94,7 +95,7 @@ public class MemberDaoImplementation implements MemberDao {
 				new RowMapper<Member>() {
 					public Member mapRow(ResultSet resultSet, int i) throws SQLException {
 						Member member = new Member();
-						member.setId( resultSet.getLong( "member_id" ) );
+						member.setMember_id(resultSet.getLong( "member_id" ) );
 						member.setFirstName(resultSet.getString("firstName"));
 						member.setLastName(resultSet.getString("lastName"));
 						member.setEmail(resultSet.getString("email"));

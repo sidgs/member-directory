@@ -14,7 +14,9 @@ import java.util.Properties;
 @Configuration
 @ImportResource ("classpath*:META-INF/*appContext.xml")
 public class MemberWsConfig {
-
+        
+	
+	 
 
 }
 
