@@ -38,14 +38,14 @@ public class MemberDaoImplementation implements MemberDao {
 	}
 
 	public void updateMember(Member member) {
-			String query = "update member set firstName=?, phone=?, email=?, address=? where lastName=?";
+			String query = "update member set id=?,firstName=?, phone=?, email=?, address=? where lastName=?";
 
 			int i = jdbcTemplate.update(query,
+					member.getId(),
 					member.getFirstName(),member.getPhone(),
 					member.getEmail(), member.getAddress(), member.getLastName());
 
-
-	}
+}
 
 	public List<Member> getAllMembers() {
 		List<Member> members = jdbcTemplate.query(
