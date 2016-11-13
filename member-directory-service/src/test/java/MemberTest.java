@@ -31,8 +31,8 @@ public class MemberTest {
 	@Test
 	public void setId() throws Exception {
 		Member member = new Member();
-		member.setId(10);
-		Assert.assertEquals(member.getId(), "10");
+		member.setMember_id(10);
+		Assert.assertEquals(member.getMember_id(), "10");
 	}
 	
 	@Test
@@ -40,8 +40,8 @@ public class MemberTest {
 		
 	    Member member = new Member();
 	    int expResult = 1000;
-	    member.setId(1000);
-	    int result = (int) member.getId();
+	    member.setMember_id(1000);
+	    int result = (int) member.getMember_id();
 	    assertEquals(expResult, result);
 	}
 	
