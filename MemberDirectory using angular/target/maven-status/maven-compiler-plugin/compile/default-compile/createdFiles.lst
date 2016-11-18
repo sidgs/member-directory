@@ -1,0 +1,8 @@
+com\aem\service\MemberServiceImpl.class
+com\aem\service\MemberService.class
+com\aem\controller\IndexController.class
+com\aem\model\Member.class
+com\aem\configuration\MemberInitializer.class
+com\aem\configuration\CORSFilter.class
+com\aem\configuration\MemberConfiguration.class
+com\aem\controller\MemberRestController.class
