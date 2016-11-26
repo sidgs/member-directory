@@ -5,5 +5,5 @@ target
 .idea
 .project
 .classpath
-*/*.iml
+*.iml
 .idea
