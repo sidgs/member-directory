@@ -26,11 +26,13 @@ public class MemberDaoImplementation implements MemberDao {
 	JdbcTemplate jdbcTemplate ;
 
 	public void addMember(Member member) {
-			String query = "insert into member ( member_id,firstName, lastName, email, phone, address) " +
-					"values (?,?,?,?,?,?)";
-			 jdbcTemplate.update(query,member.getMember_id(),
+			String query = "insert into member ( firstName, lastName, email, phone, address) " +
+					"values (?,?,?,?,?)";
+			 jdbcTemplate.update(query,
+//					 member.getMember_id(),
 					member.getFirstName(),member.getLastName(),member.getEmail(),
 					member.getPhone(), member.getAddress() );
+
 	}
 
 	public void deleteMember(long id) {
