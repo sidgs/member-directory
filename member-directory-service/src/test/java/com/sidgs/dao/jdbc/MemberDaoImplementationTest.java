@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.sql.ResultSet;
 import java.util.List;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -24,17 +25,19 @@ public class MemberDaoImplementationTest {
 	    	
 	    }
 
+		@Before
 	    public void setup(){
 	        if (applicationContext== null)
 	        applicationContext =
 	                new ClassPathXmlApplicationContext("classpath:META-INF/member-directory-service-appContext.xml");
+
+			memberdao =  (MemberDao) applicationContext.getBean("MemberDao");
 
 	    }
 
 	    @Test
 	    public void testAppContextInit() {
 
-	        setup() ;
 	        assert (true);
 	        JdbcTemplate jdbcTemplate = (JdbcTemplate) applicationContext.getBean("jdbcTemplate");
 	        assert (jdbcTemplate!= null );
@@ -45,8 +48,8 @@ public class MemberDaoImplementationTest {
 	    
 	    @SuppressWarnings("deprecation")
 		@Test
-	    public void testAddMember(){
-	    	
+		public void testAddMember(){
+//	    	setup();
 	    	Member m1=new Member();
 	    	m1.setAddress("guntur");
 	    	m1.setEmail("mail.com");
@@ -60,14 +63,22 @@ public class MemberDaoImplementationTest {
 	    }
 	    @Test
 	    public void testUpdateMember(){
-	        Member m3 = memberdao.getMember(5);
+//			setup();
+			Member m3 = null ;
+			try {
+				 m3 = memberdao.getMember(5);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 	        m3.setFirstName("kalyan");
-	        memberdao.updateMember(m3);
+			memberdao.updateMember(m3);
 	       Member m1=memberdao.getMember(5);
 	       assertEquals("kalyan",m1.getFirstName());
 	       }
+
 	    @Test
 	    public void testDeleteMember(){
+//			setup();
 	    	List<Member> members=memberdao.getAllMembers();
 	    	int i= members.size();
 	    	memberdao.deleteMember(5);
