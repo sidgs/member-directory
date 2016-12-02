@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+#cen{
+ position:absolute;
+ top:0px;
+ left:750px;
+}
+#ben{
+ position:absolute;
+ top:0px;
+ left:875px;
+}
+table,th,td{
+ border: 1px solid black;
+}
+#invalid_1{
+	  color:red;
+	  position:absolute;
+	  top:-5px;
+	  left:250px;
+	  }
+ #invalid_2{
+ color:red;
+ position:absolute;
+ top:70px;
+ left:240px;
+ }
+#invalid_3{
+ color:red;
+ position:absolute;
+ top:110px;
+ left:240px;
+}
+#invalid_4{
+ color:red;
+ position:absolute;
+ top:150px;
+ left:240px;
+}
+ #invalid_5{
+ color:red;
+ position:absolute;
+ top:30px;
+ left:250px;
+ }
+
+</style>
+</head>
+<body>
+<img width="750" src="./images/logo sidgs.PNG" alt="No image found" style="position:absolute; top:15px; left:225px"></br></br></br></br></br></br></br></br>
+ <input id="cen" type="text" placeholder="       Search here"/>
+ <input id="ben" type="submit" value="search"/>
+ <form action="#" method = "post" onsubmit = "return validate()">
+ <label>Firstname</label>
+ <input type="text" id="fname" placeholder="Enter your firstname"/></br></br>
+ <label>Lastname</label>
+ <input type="text" id="lname" placeholder="Enter your lastname"/></br></br>
+ <label>Address</label>
+ <input type ="text" id="address" placeholder=""/></br></br>
+ <label>Contact</label>
+ <input type="text" id="contact" placeholder="nnn-nnn-nnnn"/></br></br>
+ <label>E-mail</label>
+ <input type="text" id="mail" placeholder="abc@domain.com"/></br></br>
+ <input type="submit" value="submit"/>
+</form>
+</br></br></br>
+
+<table style="width:75%">
+<tr>
+ <th>id</th>
+ <th>Firstname</th>
+ <th>Lastname</th>
+ <th>Address</th>
+ <th>Email</th>
+ <th>#Contact</th>
+</tr>
+</table>
+<p id="invalid_1"></p>
+<p id="invalid_2"></p>
+<p id="invalid_3"></p>
+<p id="invalid_4"></p>
+<p id="invalid_5"></p>
+<script type="text/javascript">
+ function validate(){
+  if(document.getElementById("fname").value == ""){
+   document.getElementById("invalid_1").innerHTML="Firstname cannot be empty";
+   invalid = 0;
+  }
+  else{
+   document.getElementById("invalid_1").innerHTML="";
+  }
+  if(document.getElementById("lname").value == ""){
+   document.getElementById("invalid_5").innerHTML="Lastname cannot be empty";
+   invalid = 0;
+  }
+  else{
+   document.getElementById("invalid_5").innerHTML="";
+  }
+  if(document.getElementById("address").value == ""){
+   document.getElementById("invalid_2").innerHTML="Please enter your address";
+   invalid=0;
+   }
+  else{
+    document.getElementById("invalid_2").innerHTML="";
+  }
+  if((document.getElementById("contact").value).match(/^\d{10}$|^(\(\d{3}\)\s*)?\d{3}[\s-]?\d{4}$/)){
+   document.getElementById("invalid_3").innerHTML="";
+  }
+  else{
+   document.getElementById("invalid_3").innerHTML="Not a valid contact number";
+   invalid = 0;
+  }
+  if((document.getElementById("mail").value).match(/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/)){
+   document.getElementById("invalid_4").innerHTML="";
+  }
+  else{
+   document.getElementById("invalid_4").innerHTML="Not a valid email-id";
+   invalid=0;
+  }
+  
+  if(invalid == 0){
+   return false;
+  }
+  else{
+   return true;
+  }
+ }
+</script>
+</body>
+</html>
