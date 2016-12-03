@@ -1,6 +1,0 @@
-<html>
-<head>${properties.head}</head>
-<body>
-<h1>${properties.myname}</h1>
-</body>
-</html>
